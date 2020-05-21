@@ -35,7 +35,7 @@ app.get('/api/reviews/:id', ({ params: { id } }, res) => {
 // NEW API ENDPOINTS
 
 // CREATE
-app.post('/api/reviews/', ({ body }, res) => {
+app.post('/new-api/reviews/', ({ body }, res) => {
   db.create(body, (err, results) => {
     if (err) {
       console.log(err);
@@ -47,7 +47,7 @@ app.post('/api/reviews/', ({ body }, res) => {
 });
 
 // READ
-app.get('/api/reviews/:id', ({ params: { id } }, res) => {
+app.get('/new-api/reviews/:id', ({ params: { id } }, res) => {
   db.findId(id, (err, results) => {
     if (err) {
       console.log(err);
@@ -59,7 +59,7 @@ app.get('/api/reviews/:id', ({ params: { id } }, res) => {
 });
 
 // UPDATE
-app.put('/api/reviews/:id', ({ params: { id }, body: { body } }, res) => {
+app.put('/new-api/reviews/:id', ({ params: { id }, body }, res) => {
   db.updateId(id, body, (err, results) => {
     if (err) {
       console.log(err);
@@ -71,7 +71,7 @@ app.put('/api/reviews/:id', ({ params: { id }, body: { body } }, res) => {
 });
 
 // DELETE
-app.delete('/api/reviews/:id', ({ params: { id } }, res) => {
+app.delete('/new-api/reviews/:id', ({ params: { id } }, res) => {
   db.deleteId(id, (err) => {
     if (err) {
       console.log(err);

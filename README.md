@@ -4,10 +4,10 @@ This project is a re-engineering of the backend of an existing mircroservice.
 # CRUD Support
 | Operation | HTTP | Endpoint | Description |
 |-----------|------|--------------|-------------|
-| **CREATE** | **POST** | /api/reviews/ | adds new record |
-| **READ** | **GET** | /api/reviews/:id | finds record at specified `id` |
-| **UPDATE** | **PUT** | /api/reviews/:id | updates existing record for `id` |
-| **DELETE** | **DELETE** | /api/reviews/:id | deletes record at specified `id` |
+| **CREATE** | **POST** | /new-api/reviews/ | adds new record |
+| **READ** | **GET** | /new-api/reviews/:id | finds record at specified `id` |
+| **UPDATE** | **PUT** | /new-api/reviews/:id | updates existing record for `id` |
+| **DELETE** | **DELETE** | /new-api/reviews/:id | deletes record at specified `id` |
 
 
 ## Front-End Authors
