@@ -10,30 +10,68 @@ app.use(express.static(`${__dirname}/../client/public`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// ROUTES
-app.get('/api/reviews/:search', (req, res) => {
-  db.find(req.params.search, (err, results) => {
+// FRONT END ROUTES
+app.patch('/api/reviews/:id', ({ params: { id }, body: { reviewId, field, value } }, res) => {
+  db.update(id, reviewId, field, value, (err, results) => {
     if (err) {
-      res.status(400).send(err);
+      res.sendStatus(400);
     } else {
-      res.status(200).json(results);
+      res.status(200).send(results);
     }
   });
 });
 
-app.patch('/api/reviews/:id', (req, res) => {
-  const { id } = req.params;
-  const { reviewId } = req.body;
-  const { field } = req.body;
-  const { value } = req.body;
-  db.update(id, reviewId, field, value, (err, results) => {
+
+// CREATE
+app.post('/api/reviews/', ({ body }, res) => {
+  db.create(body, (err, results) => {
     if (err) {
-      res.status(400).send(err);
+      console.log(err);
+      res.sendStatus(500);
+      return;
+    }
+    res.send(results);
+  });
+});
+
+// READ
+app.get('/api/reviews/:id', ({ params: { id } }, res) => {
+  db.find(id, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(400);
+      return;
     } else {
-      res.status(204).json(results);
+      res.status(200).send(results);
     }
   });
 });
+
+// UPDATE
+app.put('/api/reviews/:id', ({ params: { id }, body: { body } }, res) => {
+  db.updateId(id, body, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+      return;
+    }
+    res.status(200).send(results);
+  });
+});
+
+// DELETE
+app.delete('/api/reviews/:id', ({ params: { id } }, res) => {
+  db.removeId(id, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+      return;
+    }
+    res.sendStatus(200);
+  });
+});
+
+
 
 
 module.exports = app;
