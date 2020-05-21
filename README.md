@@ -1,5 +1,5 @@
 # Reviews
-This project re-engineers the backend of an existing legacy codebase to improve speed and performance.
+This project is a re-engineering of the backend of an existing mircroservice.
 
 # CRUD Support
 | Operation | HTTP | Endpoint | Description |
