@@ -37,7 +37,7 @@ for (let i = 0; i < 100; i += 1) {
       user: newUser,
     };
 
-    db.save(newReview);
+    db.create(newReview);
   }
 }
 
@@ -78,5 +78,5 @@ for (let j = 0; j < reviewCount; j += 1) {
     user: curatedUser,
   };
 
-  db.save(curatedReview);
+  db.create(curatedReview);
 }
