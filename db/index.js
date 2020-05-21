@@ -38,8 +38,7 @@ const reviewSchema = mongoose.Schema({
 
 const Review = mongoose.model('Review', reviewSchema);
 
-
-const save = (review) => {
+const create = (review) => {
   const entry = new Review({
     id: review.id,
     game: review.game,
@@ -93,7 +92,40 @@ const update = (gameId, reviewId, field, value, callback) => {
   }
 };
 
+const findId = (inputGame, cb) => {
+  Review.find({ id: inputGame }).exec((err, results) => {
+    if (err) {
+      cb(err);
+    }
+    cb(null, results);
+  });
+};
+
+const updateId = (id, changes, cb) => {
+  Review.update({ id }, changes, (err, results) => {
+    if (err) {
+      cb(err);
+    }
+    cb(null, results);
+  });
+};
+
+const deleteId = (id, cb) => {
+  Review.deleteMany({ id }, (err) => {
+    if (err) {
+      console.log(err);
+    }
+    cb();
+  });
+};
+
+
+module.exports.create = create;
+module.exports.findId = findId;
+module.exports.updateId = updateId;
+module.exports.deleteId = deleteId;
+
+
 module.exports.update = update;
-module.exports.save = save;
 module.exports.find = find;
 module.exports.Review = Review;

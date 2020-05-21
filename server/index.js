@@ -10,17 +10,29 @@ app.use(express.static(`${__dirname}/../client/public`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// FRONT END ROUTES
+// OLD FRONT END ROUTES
 app.patch('/api/reviews/:id', ({ params: { id }, body: { reviewId, field, value } }, res) => {
   db.update(id, reviewId, field, value, (err, results) => {
     if (err) {
       res.sendStatus(400);
     } else {
-      res.status(200).send(results);
+      res.send(results);
     }
   });
 });
 
+app.get('/api/reviews/:id', ({ params: { id } }, res) => {
+  db.find(id, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(400);
+      return;
+    }
+    res.send(results);
+  });
+});
+
+// NEW API ENDPOINTS
 
 // CREATE
 app.post('/api/reviews/', ({ body }, res) => {
@@ -36,14 +48,13 @@ app.post('/api/reviews/', ({ body }, res) => {
 
 // READ
 app.get('/api/reviews/:id', ({ params: { id } }, res) => {
-  db.find(id, (err, results) => {
+  db.findId(id, (err, results) => {
     if (err) {
       console.log(err);
       res.sendStatus(400);
       return;
-    } else {
-      res.status(200).send(results);
     }
+    res.send(results);
   });
 });
 
@@ -55,23 +66,21 @@ app.put('/api/reviews/:id', ({ params: { id }, body: { body } }, res) => {
       res.sendStatus(500);
       return;
     }
-    res.status(200).send(results);
+    res.send(results);
   });
 });
 
 // DELETE
 app.delete('/api/reviews/:id', ({ params: { id } }, res) => {
-  db.removeId(id, (err, results) => {
+  db.deleteId(id, (err) => {
     if (err) {
       console.log(err);
       res.sendStatus(500);
       return;
     }
-    res.sendStatus(200);
+    res.send('Item deleted');
   });
 });
-
-
 
 
 module.exports = app;
