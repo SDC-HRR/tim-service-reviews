@@ -38,6 +38,24 @@ const reviewSchema = mongoose.Schema({
 
 const Review = mongoose.model('Review', reviewSchema);
 
+const find = (inputGame, callback) => {
+  Review.find({ id: inputGame }).sort({ helpful: -1 }).exec((err, res) => {
+    callback(err, res);
+  });
+};
+
+const update = (gameId, reviewId, field, value, callback) => {
+  if (field === 'helpful') {
+    Review.findOneAndUpdate({ id: gameId, 'user.id': reviewId }, { helpful: value }, (err, res) => {
+      callback(err, res);
+    });
+  } else {
+    Review.findOneAndUpdate({ id: gameId, 'user.id': reviewId }, { funny: value }, (err, res) => {
+      callback(err, res);
+    });
+  }
+};
+
 const create = (review) => {
   const entry = new Review({
     id: review.id,
@@ -74,24 +92,6 @@ const create = (review) => {
   });
 };
 
-const find = (inputGame, callback) => {
-  Review.find({ id: inputGame }).sort({ helpful: -1 }).exec((err, res) => {
-    callback(err, res);
-  });
-};
-
-const update = (gameId, reviewId, field, value, callback) => {
-  if (field === 'helpful') {
-    Review.findOneAndUpdate({ id: gameId, 'user.id': reviewId }, { helpful: value }, (err, res) => {
-      callback(err, res);
-    });
-  } else {
-    Review.findOneAndUpdate({ id: gameId, 'user.id': reviewId }, { funny: value }, (err, res) => {
-      callback(err, res);
-    });
-  }
-};
-
 const findId = (inputGame, cb) => {
   Review.find({ id: inputGame }).exec((err, results) => {
     if (err) {
@@ -125,7 +125,7 @@ module.exports.findId = findId;
 module.exports.updateId = updateId;
 module.exports.deleteId = deleteId;
 
-
+//Pre-existing front-end endpoints
 module.exports.update = update;
 module.exports.find = find;
 module.exports.Review = Review;
