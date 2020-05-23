@@ -1,6 +1,7 @@
 *.csv
 .DS_Store
 
+public/dist/*
 
 # Coverage directory used by tools like istanbul
 coverage
