@@ -1,3 +1,5 @@
+require('newrelic');
+
 const express = require('express');
 
 const app = express();
@@ -10,9 +12,9 @@ app.use(express.static(`${__dirname}/../client/public`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// OLD FRONT END ROUTES
+// UPDATE
 app.patch('/api/reviews/:id', ({ params: { id }, body: { reviewId, field, value } }, res) => {
-  db.update(id, reviewId, field, value, (err, results) => {
+  db.updateId(id, reviewId, field, value, (err, results) => {
     if (err) {
       res.sendStatus(400);
     } else {
@@ -21,46 +23,22 @@ app.patch('/api/reviews/:id', ({ params: { id }, body: { reviewId, field, value 
   });
 });
 
-app.get('/api/reviews/:id', ({ params: { id } }, res) => {
-  db.find(id, (err, results) => {
-    if (err) {
-      console.log(err);
-      res.sendStatus(400);
-      return;
-    }
-    res.send(results);
-  });
-});
-
-// NEW API ENDPOINTS
-
-// CREATE
-app.post('/new-api/reviews/', ({ body }, res) => {
-  db.create(body, (err, results) => {
-    if (err) {
-      console.log(err);
-      res.sendStatus(500);
-      return;
-    }
-    res.send(results);
-  });
-});
-
 // READ
-app.get('/new-api/reviews/:id', ({ params: { id } }, res) => {
+app.get('/api/reviews/:id', ({ params: { id } }, res) => {
   db.findId(id, (err, results) => {
     if (err) {
       console.log(err);
       res.sendStatus(400);
       return;
     }
+    console.log(results);
     res.send(results);
   });
 });
 
-// UPDATE
-app.put('/new-api/reviews/:id', ({ params: { id }, body }, res) => {
-  db.updateId(id, body, (err, results) => {
+// CREATE
+app.post('/new-api/reviews/:id', ({ params: { id }, body }, res) => {
+  db.create(id, body, (err, results) => {
     if (err) {
       console.log(err);
       res.sendStatus(500);
