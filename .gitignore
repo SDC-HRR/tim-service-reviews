@@ -1,7 +1,9 @@
 *.csv
 .DS_Store
-
-
+newrelic.js
+index.js.Mongoose
+*.log
+package-lock.json
 
 # Coverage directory used by tools like istanbul
 coverage
