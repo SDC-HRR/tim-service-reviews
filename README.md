@@ -1,5 +1,5 @@
 # Reviews
-This project is a re-engineering of the backend of an existing mircroservice.
+This project is a re-engineering of the backend of an existing mircroservice to support data at web scale.
 
 # CRUD Support
 | Operation | HTTP | Endpoint | Description |
