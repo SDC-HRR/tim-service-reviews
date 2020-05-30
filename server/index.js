@@ -49,14 +49,14 @@ app.post('/new-api/reviews/:id', ({ params: { id }, body }, res) => {
 });
 
 // DELETE
-app.delete('/new-api/reviews/:id', ({ params: { id } }, res) => {
-  db.deleteId(id, (err) => {
+app.delete('/new-api/reviews/:id', ({ params: { id }, body }, res) => {
+  db.deleteId(id, body, (err) => {
     if (err) {
       console.log(err);
       res.sendStatus(500);
       return;
     }
-    res.send('Item deleted');
+    res.status(200).send('Item deleted');
   });
 });
 

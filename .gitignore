@@ -2,7 +2,7 @@
 .DS_Store
 newrelic.js
 index.js.Mongoose
-
+*.log
 
 
 # Coverage directory used by tools like istanbul

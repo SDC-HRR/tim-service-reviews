@@ -6,7 +6,7 @@ This project is a re-engineering of the backend of an existing mircroservice.
 |-----------|------|--------------|-------------|
 | **CREATE** | **POST** | /new-api/reviews/ | adds new record |
 | **READ** | **GET** | /new-api/reviews/:id | finds record at specified `id` |
-| **UPDATE** | **PUT** | /new-api/reviews/:id | updates existing record for `id` |
+| **UPDATE** | **PATCH** | /new-api/reviews/:id | updates existing record for `id` |
 | **DELETE** | **DELETE** | /new-api/reviews/:id | deletes record at specified `id` |
 
 
