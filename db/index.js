@@ -123,7 +123,4 @@ const deleteId = (id, { uid }, cb) => {
   });
 };
 
-module.exports.create = create;
-module.exports.findId = findId;
-module.exports.updateId = updateId;
-module.exports.deleteId = deleteId;
+module.exports = { create, findId, updateId, deleteId };
