@@ -188,11 +188,11 @@ export const VoteUp = styled.span`
   padding: 0 5px;
   font-size: 12px;
   padding: 16px;
-  background: url('https://fecreviewsimages.s3-us-west-1.amazonaws.com/tu.png') no-repeat;
+  background: url('https://d1i5z9gkmthkca.cloudfront.net/photos/sdc/tu.png') no-repeat;
   background-position: left;
 
   &:hover {
-    background: url('https://fecreviewsimages.s3-us-west-1.amazonaws.com/tuclicked.png') no-repeat;
+    background: url('https://d1i5z9gkmthkca.cloudfront.net/photos/sdc/tuclicked.png') no-repeat;
     background-position: left;
   }
 `;
@@ -202,11 +202,11 @@ export const VoteDown = styled.span`
   font-size: 12px;
   line-height: 20px;
   padding: 16px;
-  background: url('https://fecreviewsimages.s3-us-west-1.amazonaws.com/td.png') no-repeat;
+  background: url('https://d1i5z9gkmthkca.cloudfront.net/photos/sdc/td.png') no-repeat;
   background-position: left;
 
   &:hover {
-    background: url('https://fecreviewsimages.s3-us-west-1.amazonaws.com/tdclicked.png') no-repeat;
+    background: url('https://d1i5z9gkmthkca.cloudfront.net/photos/sdc/tdclicked.png') no-repeat;
     background-position: left;
   }
 `;
@@ -216,11 +216,11 @@ export const VoteFunny = styled.span`
   font-size: 12px;
   line-height: 20px;
   padding: 16px;
-  background: url('https://fecreviewsimages.s3-us-west-1.amazonaws.com/happy.png') no-repeat;
+  background: url('https://d1i5z9gkmthkca.cloudfront.net/photos/sdc/happy.png') no-repeat;
   background-position: left;
 
   &:hover {
-    background: url('https://fecreviewsimages.s3-us-west-1.amazonaws.com/happyclicked.png') no-repeat;
+    background: url('https://d1i5z9gkmthkca.cloudfront.net/photos/sdc/happyclicked.png') no-repeat;
     background-position: left;
   }
 `;

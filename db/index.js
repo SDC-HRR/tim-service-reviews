@@ -33,13 +33,13 @@ const create = (id, { rating, hours, description, helpful, funny, thread_length,
 
     params = [id, gameName, gameReviews, rating, hours, description, helpful, funny, date.toISOString(), thread_length, uid, user_username, user_recommended, user_steam_purchaser, user_numproducts, user_numreviews, user_icon, user_player_type, user_xp, user_friend_level, user_steam_level];
 
-    console.log(params);
-    client.execute('INSERT INTO reviews (gameid, game, game_reviews, rating, hours, description, helpful, funny, date_posted, thread_length, user_id, user_username, user_recommended, user_steam_purchaser, user_numproducts, user_numreviews, user_icon, user_player_type, user_xp, user_friend_level, user_steam_level) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', params, { prepare: true }, (err, data) => {
+    //console.log(params);
+    client.execute('INSERT INTO reviews (gameid, game, game_reviews, rating, hours, description, helpful, funny, date_posted, thread_length, user_id, user_username, user_recommended, user_steam_purchaser, user_numproducts, user_numreviews, user_icon, user_player_type, user_xp, user_friend_level, user_steam_level) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', params, { prepare: true }, (err) => {
       if (err) {
         console.log(err);
         return;
       }
-      cb(null, data);
+      cb(null, { uid });
     });
   });
 };
@@ -51,6 +51,7 @@ const findId = (id, cb) => {
       console.log(err);
       return;
     }
+    // console.log(results.rows.length);
     client.execute('SELECT count(user_id) FROM reviews WHERE gameid=?', [id], {prepare:true}, (err, count) => {
       if (err) {
         console.log(err);

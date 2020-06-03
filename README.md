@@ -1,13 +1,13 @@
 # Reviews
-This project is a re-engineering of the backend of an existing mircroservice.
+This project is a re-engineering of the backend of an existing mircroservice to support data at web scale.
 
 # CRUD Support
 | Operation | HTTP | Endpoint | Description |
 |-----------|------|--------------|-------------|
-| **CREATE** | **POST** | /new-api/reviews/ | adds new record |
-| **READ** | **GET** | /new-api/reviews/:id | finds record at specified `id` |
-| **UPDATE** | **PATCH** | /new-api/reviews/:id | updates existing record for `id` |
-| **DELETE** | **DELETE** | /new-api/reviews/:id | deletes record at specified `id` |
+| **CREATE** | **POST** | /api/reviews/:id | adds new review for specified id |
+| **READ** | **GET** | /api/reviews/:id | finds reviews at specified `id` |
+| **UPDATE** | **PATCH** | /api/reviews/:id | updates existing review for `id` |
+| **DELETE** | **DELETE** | /api/reviews/:id | deletes review at specified `id` and `user_id`|
 
 
 ## Front-End Authors

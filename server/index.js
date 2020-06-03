@@ -1,4 +1,4 @@
-require('newrelic');
+//require('newrelic');
 
 const express = require('express');
 
@@ -37,7 +37,7 @@ app.get('/api/reviews/:id', ({ params: { id } }, res) => {
 });
 
 // CREATE
-app.post('/new-api/reviews/:id', ({ params: { id }, body }, res) => {
+app.post('/api/reviews/:id', ({ params: { id }, body }, res) => {
   db.create(id, body, (err, results) => {
     if (err) {
       console.log(err);
@@ -49,7 +49,8 @@ app.post('/new-api/reviews/:id', ({ params: { id }, body }, res) => {
 });
 
 // DELETE
-app.delete('/new-api/reviews/:id', ({ params: { id }, body }, res) => {
+app.delete('/api/reviews/:id', ({ params: { id }, body }, res) => {
+  console.log(id, body);
   db.deleteId(id, body, (err) => {
     if (err) {
       console.log(err);
