@@ -4,6 +4,7 @@ newrelic.js
 index.js.Mongoose
 *.log
 package-lock.json
+*.gz
 
 # Coverage directory used by tools like istanbul
 coverage

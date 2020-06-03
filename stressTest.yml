@@ -1,0 +1,81 @@
+config:
+  target: 'http://localhost:4200'
+  processor: "./stressTestHelpers.js"
+  phases:
+    - duration: 60
+      arrivalRate: 20
+scenarios:
+  - name: "Normal page visit"
+    weight: 1
+    flow:
+      - loop:
+        - function: "genId"
+        - get:
+            url: "/?p{{ id }}"
+        count: 300
+  - name: "Visit a page, like a review"
+    weight: 1
+    flow:
+      - loop:
+        - function: "genId"
+        - patch:
+            url: "/api/reviews/{{ id }}"
+            form:
+              reviewId: 1
+              field: 'helpful'
+              value: {{ helpful }}
+        count: 300
+
+
+
+
+#--------- Can't get this to load in post request (null is always in the db)
+  # payload:
+  #   path: "reviewsTestData.csv"
+  #   options:
+  #     delimiter: "|"
+  #   fields:
+  #     - "id"
+  #     - "rating"
+  #     - "hours"
+  #     - "description"
+  #     - "helpful"
+  #     - "funny"
+  #     - "thread_length"
+  #     - "user_username"
+  #     - "user_recommended"
+  #     - "user_steam_purchaser"
+  #     - "user_numproducts"
+  #     - "user_numreviews"
+  #     - "user_icon"
+  #     - "user_player_type"
+  #     - "user_xp"
+  #     - "user_friend_level"
+  #     - "user_steam_level"
+  #   order: sequence
+  #   skipHeader: true
+# scenarios:
+#   - name: "visit a page, add a review"
+#   - weight: 4
+#   - flow:
+#     - get:
+#         url: "/?p{{ id }}"
+#     - post:
+#         url: "/api/reviews/{{ id }}"
+#         form:
+#           rating: {{ rating }}
+#           hours: {{ hours }}
+#           description: {{ description }}
+#           helpful: {{ helpful }}
+#           funny: {{ funny }}
+#           thread_length: {{ thread_length }}
+#           user_username: {{ user_username}}
+#           user_recommended: {{ user_recommended }}
+#           user_steam_purchaser: {{ user_steam_purchaser }}
+#           user_numproducts: {{ user_numproducts }}
+#           user_numreviews: {{ user_numreviews }}
+#           user_icon: {{ user_icon }}
+#           user_player_type: {{ user_player_type }}
+#           user_xp: {{ user_xp }}
+#           user_friend_level: {{ user_friend_level }}
+#           user_steam_level: {{ user_steam_level }}
