@@ -1,7 +1,7 @@
-CREATE KEYSPACE steamyReviews
-  WITH replication = { 'class': 'SimpleStrategy', 'replication_factor': 1};
+CREATE KEYSPACE steamyreviews
+  WITH replication = { 'class': 'SimpleStrategy', 'replication_factor': 3};
 
-CREATE TABLE steamyReviews.reviews (
+CREATE TABLE test.reviews (
   gameId int,
   game text,
   game_reviews smallint,
